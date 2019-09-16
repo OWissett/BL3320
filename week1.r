@@ -44,10 +44,10 @@ my.Models <- function()
   {
     myGLMs <- list()
 
-    myGLMs[[1]] <- glm(gsize~habitat,data = whDat)                             ## gsize is only affected by habitat
-    myGLMs[[2]] <- glm(gsize~season, data = whDat)                             ## gsize is only affected by season
-    myGLMs[[3]] <- glm(gsize~habitat + season, data = whDat)                   ## gsize is affected by habitat and season
-    myGLMs[[4]] <- glm(gsize~habitat + season + season*habitat, data = whDat)  ## gsize is affect by habitat and season, and there is a relation between habitat and season
+    myGLMs[[1]] <- glm(gsize ~ habitat, data = whDat)                            ## gsize is only affected by habitat - This is the best model
+    myGLMs[[2]] <- glm(gsize ~ season, data = whDat)                             ## gsize is only affected by season
+    myGLMs[[3]] <- glm(gsize ~ habitat + season, data = whDat)                   ## gsize is affected by habitat and season
+    myGLMs[[4]] <- glm(gsize ~ habitat + season + season*habitat, data = whDat)  ## gsize is affect by habitat and season, and there is a relation between habitat and season
     return(myGLMs)
 }
 
@@ -127,7 +127,7 @@ my.ModelPlot <- function(m, n, MODE, model){
                                            toString(i)), xlab="Residue Value")
       
       dev.off()
-      dev.off()
+      #dev.off()
       
     }
   #}else{print("Enter Valid Parameters: 0 - List Test Mode, 1 - Single Test Mode")}
@@ -136,20 +136,37 @@ my.ModelPlot <- function(m, n, MODE, model){
 my.Plot <- function()
 {
   
-  dev.off() ## Ensure the plot stream is set back to normal, rather than to the file stream.
+  #dev.off() ## Ensure the plot stream is set back to normal, rather than to the file stream.
   
-  plot <- ggplot(whDat, aes(habitat, gsize, colour = season)) +
-          geom_point() +
-          theme_void() + 
+  plot1 <- ggplot(whDat, aes(habitat, gsize, colour = season)) +
+          geom_boxplot() +
+          theme_bw() + 
           labs(title = "Pygmy warthog's group size is dependent on the habitat",
                subtitle = "Uluguru National Park, Uganda",
                caption = "Counts were carried out from a moving vehicle for 25 x 1km transects in both habitats",
-               x = "Season",
+               x = "Habitat",
                y = "Number of warthogs spotted per transect",
                colour = "Season") +
           scale_colour_manual(labels = c("Dry", "Wet"), values = c("deepskyblue1", "green4"))
   
-  grid.arrange(plot)
+  plot2 <- ggplot(whDat, aes(habitat, gsize)) +
+    geom_boxplot() +
+    theme_bw() + 
+    labs(title = "Pygmy warthog's group size is dependent on the habitat",
+         subtitle = "Uluguru National Park, Uganda",
+         caption = "Counts were carried out from a moving vehicle for 25 x 1km transects in both habitats",
+         x = "Habitat",
+         y = "Number of warthogs spotted per transect",
+         colour = "Season") +
+    geom_hline(yintercept = 22.154)
+  
+  png(filename = "Output/Graph.png",
+      width=1920, 
+      height=1080)
+  
+  grid.arrange(plot1, plot2, ncol = 2)
+  
+  dev.off()
   
 }
 
