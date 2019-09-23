@@ -12,7 +12,7 @@ Coefficients:
 (Intercept)   22.154      1.086   20.40 3.14e-16 ***
 habitat2     -19.071      1.567  -12.17 1.68e-11 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 
 (Dispersion parameter for gaussian family taken to be 15.33082)
 
@@ -36,7 +36,7 @@ Coefficients:
 (Intercept)   11.933      2.734   4.364 0.000227 ***
 season2        2.667      4.323   0.617 0.543415    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 
 (Dispersion parameter for gaussian family taken to be 112.1449)
 
@@ -61,7 +61,7 @@ Coefficients:
 habitat2    -19.0543     1.6163 -11.789 5.59e-11 ***
 season2       0.1261     1.6483   0.076     0.94    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 
 (Dispersion parameter for gaussian family taken to be 16.02342)
 
@@ -87,7 +87,7 @@ habitat2         -18.6071     2.1147  -8.799 1.73e-08 ***
 season2            0.6429     2.2733   0.283    0.780    
 habitat2:season2  -1.1429     3.3806  -0.338    0.739    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 
 (Dispersion parameter for gaussian family taken to be 16.69558)
 
