@@ -50,10 +50,6 @@ dat1Tuesday <- subset(dat1, Lecture == "Tuesday")
 dat1Wednesday <- subset(dat1, Lecture == "Wednesday")
 
 
-# There is a relation between sex and height. 
-
-### First plot the histogram (hint-height)
-#### What can you say about the distribution of individual heights in the class?
 
 ########################
 ##     Modelling      ##
@@ -160,17 +156,26 @@ my.Plot <- function()
   
   ## Create the GGPlots here
   
-  plot1 <- ggplot()
+  plot1 <- ggplot(data = dat1, aes(x = Gender,
+                                   y = Height,
+                                   colour = Gender)) + 
+    geom_boxplot() +
+    labs(title = "Difference in height (cm) between genders",
+         x = "Gender", 
+         y = "Height (cm)")
   
-  plot2 <- ggplot()
+  plot2 <- ggplot(data = dat1, aes(Height)) +
+    geom_histogram(binwidth = 45) +
+    theme_bw()
   
-  png(filename = "Output/Graph.png",
-      width=1920, 
-      height=1080)
   
-  grid.arrange(plot1, plot2, ncol = 2)
+  #png(filename = "Output/Graph.png",
+  #    width=1920, 
+  #    height=1080)
   
-  dev.off()
+  grid.arrange(plot1, ncol = 1)
+  
+  #dev.off()
   
 }
 
@@ -178,8 +183,15 @@ my.Plot <- function()
 
 
 
+# There is a relation between sex and height. 
+my.Summary(1, 1)
 
+### First plot the histogram (hint-height)
+hist(dat1$Height)
 
+#### What can you say about the distribution of individual heights in the class?
+# The female heights follow a normal distribution. Males also follow a normal 
+# distribution.
 
 
 

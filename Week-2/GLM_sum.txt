@@ -1,0 +1,24 @@
+[1] "############### Model:  1 ###############"
+
+Call:
+glm(formula = Height ~ Gender, data = dat1)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-12.9103   -3.9103   -0.4103    4.0897   11.0897  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 165.9103     0.9003 184.280  < 2e-16 ***
+GenderMale   15.5015     1.6340   9.487 4.27e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 31.6121)
+
+    Null deviance: 4552.0  on 55  degrees of freedom
+Residual deviance: 1707.1  on 54  degrees of freedom
+AIC: 356.28
+
+Number of Fisher Scoring iterations: 2
+
