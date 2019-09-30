@@ -156,17 +156,65 @@ my.Plot <- function()
   
   ## Create the GGPlots here
   
-  plot1 <- ggplot(data = dat1, aes(x = Gender,
+  plot3 <- ggplot(data = dat1, aes(x = Lecture,
                                    y = Height,
                                    colour = Gender)) + 
     geom_boxplot() +
     labs(title = "Difference in height (cm) between genders",
-         x = "Gender", 
+         x = "Lecture", 
          y = "Height (cm)")
   
   plot2 <- ggplot(data = dat1, aes(Height)) +
     geom_histogram(binwidth = 45) +
     theme_bw()
+  
+  
+  p1 <- ggplot(dat1, aes(x = Height)) +                            # data & aesthetics
+    geom_histogram(aes(),binwidth = 5,
+                   colour = "black", 
+                   fill = "lightblue")+                          # type of plot & aesthetics
+    scale_x_continuous(name = "student's Height (cm)",           # x axis scale type
+                       breaks = seq(120, 210, 20),               # x axis limits min, max and intervals
+                       limits=c(140, 200)) +                     # x axis limits
+    scale_y_continuous(name = "Count") +                         # y axis title
+    ggtitle("Students height") +                                 # plot title
+    theme_economist()+                                           # aesthetics of plot
+    theme(axis.line = element_line(size=1, colour = "black"),    # adds black line
+          panel.grid.major = element_blank(),                    # removes major grid lines
+          panel.grid.minor = element_blank(),                    # removes minor grid lines
+          panel.border = element_blank(),                        # removes panel border
+          panel.background = element_blank(),                    # removes background colour
+          plot.title=element_text(size = 20, family="Tahoma"),   # type of plot title
+          text=element_text(size = 20, family="Tahoma"),         # type and size of axis labels
+          axis.text.x=element_text(colour="black", size = 12),   # type and size of x-axis ticks
+          axis.text.y=element_text(colour="black", size = 12),   # type and size of y-axis ticks
+          axis.line.y = element_line(size=1, colour = "black"))  # type and thickness o
+  
+  
+  
+  h<-data.frame(Height = 10*rnorm(1000))
+  
+  p1_line <- ggplot(h, aes(x = Height)) + 
+    geom_histogram(aes(y =..density..), 
+                   colour = "black", 
+                   fill = "lightblue",
+                   breaks = seq(-50, 50, by = 10))+
+    stat_function(fun = dnorm, args = list(mean = mean(h$Height), sd = sd(h$Height)))+# this creates the line 
+    scale_y_continuous(name = "Count") +                        
+    ggtitle("Students height") +                                
+    theme_economist()+                                          
+    theme(axis.line = element_line(size=1, colour = "black"),    
+          panel.grid.major = element_blank(),                   
+          panel.grid.minor = element_blank(),                    
+          panel.border = element_blank(),                        
+          panel.background = element_blank(),                    
+          plot.title=element_text(size = 20, family="Tahoma"),   
+          text=element_text(size = 20, family="Tahoma"),         
+          axis.text.x=element_text(colour="black", size = 12),   
+          axis.text.y=element_text(colour="black", size = 12),   
+          axis.line.y = element_line(size=1, colour = "black"))
+  
+  
   
   
   #png(filename = "Output/Graph.png",
