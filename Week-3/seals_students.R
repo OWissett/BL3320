@@ -183,14 +183,21 @@ model7 <- glm(girth ~ length + sex + exposure + length*sex,
               data = seals,
               family = "gaussian") #Girth is affected by length, sex and exposure. length and sex have a relationship. Exposure and sex have a no relationship
 
+model8 <- glm(girth ~ length*exposure*sex,
+              data = seals,
+              family = "gaussian")
+
+
+
 par(mfrow = c(2,2))
 plot(model6)
 plot(model7)
+plot(model8)
 # Model assumptions are not violated in either model
 
 # Fit a model to test this hypothesis 
 
-AIC(model6, model7)
+AIC(model6, model7, model8)
 #AICs are within 2 of each other, therefor AIC cannot be used to distinguish between better and worse model.
 
 # Visualize the results of this model with ONE of the following options:
@@ -201,8 +208,8 @@ AIC(model6, model7)
 plot4 <- ggplot(data = seals,
                 aes(x = length, 
                     y = girth, 
-                    colour = sex,,
-                    shape = exposure
+                    colour = sex,
+                    shape = exposure,
                     linetype = exposure)) +
   geom_point(size = 1) +
   geom_smooth(se = F, method = lm) +
@@ -217,11 +224,11 @@ plot4 <- ggplot(data = seals,
                         values = c("solid", "dotdash")) +
   scale_shape_manual(name = "Cause of Death", 
                      labels = c("Other", "PDV"),
-                     values = c(""))
+                     values = c(1, 0))
 
 # Compare all the models you have fitted. What is the most supported model? 
 
-AIC(model1 , model2, model4, model6)
+AIC(model1 , model2, model5, model6, model8)
 
 # How do you interpret the results from a biological point of view?
 
