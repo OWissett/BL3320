@@ -173,11 +173,23 @@ medianParasite <- median(AlienData$alienParasites)
 rangeParasite  <- range(AlienData$alienParasites)
 minParasite    <- min(AlienData$alienParasites)
 maxParasite    <- max(AlienData$alienParasites)
+varParasite    <- var(AlienData$alienParasites)
+
 
 parasiteSummary <- c(meanParasite,
                      modeParasite,
                      medianParasite,
                     rangeParasite,
                     minParasite,
-                    maxParasite)
+                    maxParasite,
+                    varParasite)
+
+boxplot(AlienData$alienParasites)
+hist(AlienData$alienParasites)
+densityPlot <- ggplot(data = AlienData, aes(x = alienParasites)) +
+  geom_density()
+
+poModel <- glm(data = AlienData,
+               family = poisson,
+               formula = alienParasites ~ job)
 
