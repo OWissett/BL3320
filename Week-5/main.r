@@ -189,7 +189,43 @@ hist(AlienData$alienParasites)
 densityPlot <- ggplot(data = AlienData, aes(x = alienParasites)) +
   geom_density()
 
-poModel <- glm(data = AlienData,
+##Does job type affect number of parasites
+
+poModel1 <- glm(data = AlienData,
                family = poisson,
                formula = alienParasites ~ job)
 
+meanJobParasites <- c(mean(subset(AlienData, job == "astronaut")$alienParasites),
+                      mean(subset(AlienData, job == "manager")$alienParasites),
+                      mean(subset(AlienData, job == "ground")$alienParasites))
+
+varJobParasites <- c(var(subset(AlienData, job == "astronaut")$alienParasites),
+                     var(subset(AlienData, job == "manager")$alienParasites),
+                     var(subset(AlienData, job == "ground")$alienParasites))
+
+par(mfrow = c(2,2))
+plot(poModel)
+par(mfrow = c(1,1))
+
+# Yes - job type affects the number of parasites on average.
+
+poModel2 <- glm(data = AlienData,
+                family = poisson,
+                formula = alienParasites ~ job * salary)
+
+predAstro <- predict(poModel2, data.frame(salary = sal.valA,
+                                          job = "astronaut"), se.fit = T)
+
+predManager <- predict(poModel2, data.frame(salary = sal.valM,
+                                          job = "manager"), se.fit = T)
+
+predGround <- predict(poModel2, data.frame(salary = sal.valM,
+                                            job = "ground"), se.fit = T)
+
+AstroGraph <- ggplot(data = AlienData,
+                     aes(x = salary, y = alienParasites, colour = job)) +
+  geom_point() +
+  geom_line(aes(y=fitted(poModel2))) +
+  stat_ellipse() +
+  theme_classic()
+  
